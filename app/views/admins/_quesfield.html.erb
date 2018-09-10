@@ -1,0 +1,28 @@
+<li>	
+<%= label_tag "ques-#{n}", "ques-#{n}", class: 'cont' %>
+<%= text_field_tag "ques-#{n}", "", class: 'cont' %>
+<br><br><br><br>
+	<ul>
+		<li>
+			<%= label_tag "option1-q#{n}", "option1-q#{n}", class: 'cont' %>
+			<%= text_field_tag "option1-q#{n}", "", class: 'cont' %>
+		</li>
+		<br>
+		<li>
+			<%= label_tag "option2-q#{n}", "option2-q#{n}", class: 'cont' %>
+			<%= text_field_tag "option2-q#{n}", "", class: 'cont' %>
+		</li>
+		<br>
+		<li>
+			<%= label_tag "option3-q#{n}", "option3-q#{n}", class: 'cont' %>
+			<%= text_field_tag "option3-q#{n}", "", class: 'cont' %>
+		</li>
+	</ul>
+
+<p>ANSWER(A,B,C)</p>
+<%= label_tag "ans-#{n}", "ans-#{n}", class: 'cont' %>
+<%= text_field_tag "ans-#{n}", "", class: 'cont' %>	
+</li>
+<br>
+<hr style="background-color: #f8c04d;">
+<br>

@@ -1,0 +1,36 @@
+<head>
+	<style type="text/css">
+		.butt{
+			font-size: 20px;
+		}
+		.cont{
+			height: 30px;
+			width:300px;
+			background-color: white;
+			font-size: 20px;
+			margin-left: 20px;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+
+	</style>
+</head>
+<h1>ADD ASSIGNMENT</h1>
+<div class="container">
+	<%= form_tag admins_assignment_create_path,method: :post do %>
+
+	<h2>MODULE NAME</h2>
+	<%= text_field_tag :mod_name,"",class: 'cont'%>
+	<br>
+	<h2>QUESTIONS</h2>
+	<%= link_to "Add",admins_question_create_path,method: :post,remote: true,class: 'butt' %>
+
+	<ul id="que">
+	
+
+	</ul>
+	<br>
+	<%= submit_tag "Submit" %>
+
+	<% end %>	
+</div>

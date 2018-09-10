@@ -1,0 +1,7 @@
+<h1>WELCOME <%= @signed_in_admin.username %></h1>
+
+ <p><%= link_to "Sign Out",admins_sign_out_path,method: :delete %></p>
+
+ <p><%= link_to "Add New Assignment",admins_add_assignment_path,method: :get %></p>
+
+

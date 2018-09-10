@@ -1,0 +1,5 @@
+console.log("New Field Created");
+<% @n %>
+var newField = $('<%= escape_javascript render "quesfield",n: @n%>');
+
+$('#que').append(newField);

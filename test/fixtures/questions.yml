@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mod_id: 1
+  question: MyString
+  answer: MyString
+  option1: MyString
+  option2: MyString
+  option3: MyString
+
+two:
+  mod_id: 1
+  question: MyString
+  answer: MyString
+  option1: MyString
+  option2: MyString
+  option3: MyString

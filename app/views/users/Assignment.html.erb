@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment | Unnati Software</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta charset="utf-8">
+        <meta name="author" content="Roman Kirichik">
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="/assets/favicon2.png">
+        <link rel="apple-touch-icon" href="/assets/logo12.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/assets/logo13.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/assets/logo11.png">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="/assets/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/style.css">
+        <link rel="stylesheet" href="/assets/style-responsive.css">
+        <link rel="stylesheet" href="/assets/animate.min.css">
+        <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+        <link rel="stylesheet" href="/assets/vertical-rhythm.min.css">
+        <link rel="stylesheet" href="/assets/owl.carousel.css">
+        <link rel="stylesheet" href="/assets/magnific-popup.css">
+            <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+        
+    </head>
+    
+
+    <body class="appear-animate" ">
+    
+    
+        
+        <!-- Page Loader -->        
+        <div class="page-loader">
+            <div class="loader">Loading...</div>
+        </div>
+        <!-- End Page Loader -->
+        
+        <!-- Page Wrap -->
+        <div class="page" id="top">
+            
+          <!-- Navigation panel -->
+
+            <nav class="main-nav light stick-fixed" style="background-color: #f8f8f8">
+                <div class="full-wrapper relative clearfix">
+                    <!-- Logo ( * your text or image into link tag *) -->
+                    <div class="nav-logo-wrap local-scroll">
+                        <a href="#top" class="logo">
+                            <img src="/assets/logo2.png" alt="" />
+                        </a>
+                    </div>
+                    <div class="mobile-nav">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <!-- Main Menu -->
+                    <div class="inner-nav desktop-nav">
+                        <ul class="clearlist scroll-nav local-scroll">
+                            <li class="active"><%=link_to "Home",users_dashboard_path,method: :get%>  </li>
+                           
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navigation panel -->
+            
+            
+            <!-- Section -->
+            <section style="width: 100%; background-color: white;">
+                <div class="relative container align-left" style="padding-top: 75px;">
+                   <h1 style="color:#f8c04d; font-weight: bold; font-size: 40px; text-align: center;margin-bottom: 5px;">INTRODUCTION TO COMPUTER</h1>
+                                      <h1 style="color:black; font-weight: bold; font-size: 30px; text-align: center;margin-top: 3px;">ASSIGNMENT</h1>
+
+                              <div id="assignment">
+                                <%= form_tag users_result_create_path,method: :post do %>
+                                    <% count=0 %>
+                                    <% @questions.each do |q| %>
+
+
+                                        <% count=count+1 %>
+                                         <p style="margin-bottom: 10px;">
+                                            <%= q.ques %>
+                                        </p>
+                                        <%= hidden_field_tag 'mod_id', "#{q.mod.id}" %>
+                                         <%= hidden_field_tag "ques_id-#{count}", "#{q.id}" %>
+                                        <%= radio_button_tag "ques-#{count}", 'A' %>
+                                        <%= label_tag "option1-q#{count}", "#{q.option1}" %>
+                                        <br>
+                                        <%= radio_button_tag "ques-#{count}", 'B' %>
+                                        <%= label_tag "option2-q#{count}", "#{q.option2}" %>
+                                        <br>
+                                        <%= radio_button_tag "ques-#{count}", 'C' %>
+                                        <%= label_tag "option3-q#{count}", "#{q.option3}" %>
+                                        <br>
+
+
+                                        <hr style="background-color: #f8c04d;">
+                                    <% end %>
+                                      <br>
+                                <%= submit_tag "SUBMIT",id: "sub_butt" %>
+                                <% end %>
+                            <!-- <p style="margin-bottom: 10px;">
+                               1. What is a Computer?
+                            </p>
+                            <input type="radio" name="A">
+                            <label>a system used to send speech or data over distances using a device</label>
+                            <br>
+                            <input type="radio" name="A">
+                            <label>a programmable electronic device that can store, retrieve, and process data </label>
+                            <br>
+                            <input type="radio" name="A">
+                            <label>an electronic device used to receive sound and images</label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               2. What are the two types of computer parts?
+                            </p>
+                            <input type="radio" name="B">
+                            <label>CD , Pendrive</label>
+                            <br>
+                            <input type="radio" name="B">
+                            <label>Mouse , Keyboard</label>
+                            <br>
+                            <input type="radio" name="B">
+                            <label>Hardware , Software</label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               3. What is hardware?
+                            </p>
+                            <input type="radio" name="C">
+                            <label>Programs Used To Run Computer</label>
+                            <br>
+                            <input type="radio" name="C">
+                            <label>Physical parts of Computer that we can touch</label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               4. What is Software?
+                            </p>
+                            <input type="radio" name="D">
+                            <label >Programs Used To Run Computer</label>
+                            <br>
+                            <input type="radio" name="D">
+                            <label>Physical parts of Computer that we can touch</label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               5. What are Input Devices?
+                            </p>
+                            <input type="radio" name="E">
+                            <label>device used to send data from a computer to a user</label>
+                            <br>
+                            <input type="radio" name="E">
+                            <label>device capable of storing information permenantly or temporarily</label>
+                            <br>
+                            <input type="radio" name="E">
+                            <label>device used to send data to computer </label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               6. What are output devices
+                            </p>
+                            <input type="radio" name="F">
+                            <label>device capable of storing information permenantly or temporarily</label>
+                            <br>
+                            <input type="radio" name="F">
+                            <label>device used to send data from a computer to user. </label>
+                            <br>
+                            <input type="radio" name="F">
+                            <label>device used to send data to a computer</label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               7. What is Keyboard?
+                            </p>
+                            <input type="radio" name="G">
+                            <label>an electrical device used to make sound or music louder</label>
+                            <br>
+                            <input type="radio" name="G">
+                            <label>an input device that is most often used with a personal computer</label>
+                            <br>
+                            <input type="radio" name="G">
+                            <label>an input device that allows a person to enter letters, numbers, and other symbols </label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               8. What are additional buttons in a Keyboard?
+                            </p>
+                            <input type="radio" name="H">
+                            <label>alphabets Button</label>
+                            <br>
+                            <input type="radio" name="H">
+                            <label>space Button</label>
+                            <br>
+                            <input type="radio" name="H">
+                            <label>navigation and Number button </label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               9. What is a Mouse?
+                            </p>
+                            <input type="radio" name="I">
+                            <label>an electrical device used to make sound or music louder</label>
+                            <br>
+                            <input type="radio" name="I">
+                            <label>an input device that is most often used for clicking with a personal computer</label>
+                            <br>
+                            <input type="radio" name="I">
+                            <label>an input device that allows a person to enter letters, numbers, and other symbols</label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               10. What happens when we right click on the mouse?
+                            </p>
+                            <input type="radio" name="J">
+                            <label>Opens Menu</label>
+                            <br>
+                            <input type="radio" name="J">
+                            <label>Opens Icon</label>
+                            <br>
+                            <input type="radio" name="J">
+                            <label>Selects the Icon</label>
+
+                            <hr style="background-color: #f8c04d;"> -->
+                            
+
+                        </div>    
+                    
+                </div>
+            </section>
+            <!-- End Section -->
+            
+
+            
+            
+            <!-- Divider -->
+            <hr class="mt-0 mb-0 "/>
+            <!-- End Divider -->
+            
+            
+            <!-- Footer -->
+            <footer class="page-section bg-gray-lighter footer pb-40" style="padding-top: 50px;">
+                <div style="display: flex; justify-content: space-around;">
+                    
+                    <div style="width: 20%;text-align: center; color: black;letter-spacing: 0.2em;">
+                        <hr class="hrstyle">
+                        <h2>ABOUT ENACTUS DTU</h2>
+                        <p>WE, at Enactus DTU, apply entrepreneurial concepts to develop dynamic projects that take advantage of people’s inherent dexterity and aptitude at the center of improving their livelihoods.</p>
+                        <hr class="hrstyle">
+                    </div>
+
+                    <div>
+                                <!-- Footer Logo -->
+                                <div style="display: flex;justify-content: center;">
+                                    <div class="local-scroll wow fadeInUp" data-wow-duration="1.2s" style="width: 50%;">
+                                        <a href="#top"><img src="/assets/Unnati.png" width="150" height="150" alt="" /></a>&nbsp;
+                                    </div>
+                                </div>
+                                <!-- End Footer Logo -->
+
+                                <div style="display: flex;justify-content: center;margin-bottom: 20px; ">
+                                 <div style="width: 1px;height:50px;background-color:grey">
+                                     
+                                 </div>
+                              </div>
+
+                                <!-- Social Links -->
+                                <div class="footer-social-links mb-xs-40">
+                                    <a href="https://www.facebook.com/DTU2018RotaractMUN/?ref=br_rs" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    <a href="https://twitter.com/rotaractdtu?lang=en" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    <a href="https://www.instagram.com/rotaract_dtu/" title="Instagarm" target="_blank"><i class="fa fa-instagram"></i></a>
+                                    <a href="https://rotaractdtu.wordpress.com" title="wordpress" target="_blank"><i class="fa fa-wordpress"></i></a>
+                                    <a href="https://in.linkedin.com/company/rotaract-club-of-dtu" title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
+
+                                </div>
+                                <!-- End Social Links -->  
+                                
+                                <div style="display: flex;justify-content: center;margin-top:20px;margin-bottom: 10px; ">
+                                 <div style="width: 1px;height:50px;background-color:grey">
+                                     
+                                 </div>
+                              </div>
+                                <!-- Footer Text -->
+                                <div class="footer-text">
+                                    <div class="footer-made">
+                                        Made With <span style="color: #e25555;">&hearts;</span> by Enactus, Delhi Technological University
+                                    </div>
+                                </div>
+                        <!-- End Footer Text --> 
+                        
+
+                     </div>
+
+
+                     <div style="width: 20%;text-align: center; color: black;letter-spacing: 0.2em;">
+                      
+                      <hr class="hrstyle">
+                       <h2 style="margin-bottom: 5px;">FACING AN ISSUE?</h2>
+                        <h4>CONTACT US</h4>
+                        <p>Mail Us:<br><a HREF="mailto:unnati.enactus.dtu@gmail.com">unnati.enactus.dtu@gmail.com</a></p>
+                         <hr class="hrstyle">
+
+                     </div>
+
+
+                </div>
+            </footer>
+
+            <!-- End Footer -->
+
+        </div>
+        <!-- End Page Wrap -->
+        
+        
+        <!-- JS -->
+        <script type="text/javascript" src="/assets/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="/assets/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/assets/SmoothScroll.js"></script>
+        <script type="text/javascript" src="/assets/jquery.scrollTo.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.localScroll.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.viewport.mini.js"></script>
+        <script type="text/javascript" src="/assets/jquery.countTo.js"></script>
+        <script type="text/javascript" src="/assets/jquery.appear.js"></script>
+        <script type="text/javascript" src="/assets/jquery.sticky.js"></script>
+        <script type="text/javascript" src="/assets/jquery.parallax-1.1.3.js"></script>
+        <script type="text/javascript" src="/assets/jquery.fitvids.js"></script>
+        <script type="text/javascript" src="/assets/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="/assets/isotope.pkgd.min.js"></script>
+        <script type="text/javascript" src="/assets/imagesloaded.pkgd.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.magnific-popup.min.js"></script>
+        <!-- Replace test API Key "AIzaSyAZsDkJFLS0b59q7cmW0EprwfcfUA8d9dg" with your own one below 
+        **** You can get API Key here - https://developers.google.com/maps/documentation/javascript/get-api-key -->
+        <script type="text/javascript" src="/assets/wow.min.js"></script>
+        <script type="text/javascript" src="/assets/masonry.pkgd.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.simple-text-rotator.min.js"></script>
+        <script type="text/javascript" src="/assets/all.js"></script>
+        <script type="text/javascript" src="/assets/contact-form.js"></script>
+        <script type="text/javascript" src="/assets/jquery.ajaxchimp.min.js"></script>
+        <!--[if lt IE 10]>
+                <script type="text/javascript" src="/assets/placeholder.js"></script><![endif]-->
+
+<script src="/assets/main.js"></script> <!-- Resource jQuery -->
+
+    </body>
+</html>

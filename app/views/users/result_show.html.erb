@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Solution | Assignment</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta charset="utf-8">
+        <meta name="author" content="Roman Kirichik">
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="/assets/favicon2.png">
+        <link rel="apple-touch-icon" href="/assets/logo12.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/assets/logo13.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/assets/logo11.png">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="/assets/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/style.css">
+        <link rel="stylesheet" href="/assets/style-responsive.css">
+        <link rel="stylesheet" href="/assets/animate.min.css">
+        <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+        <link rel="stylesheet" href="/assets/vertical-rhythm.min.css">
+        <link rel="stylesheet" href="/assets/owl.carousel.css">
+        <link rel="stylesheet" href="/assets/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/stylefr.css">
+            <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0//assets/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+ <!-- CSS reset -->
+    <link rel="stylesheet" href="/assets/reset.css"> <!-- Resource style -->
+    <script src="/assets/modernizr.js"></script> <!-- Modernizr -->
+    
+        <link rel="stylesheet" href="/assets/style4.css"> <!-- Resource style -->
+        
+    </head>
+    
+
+    <body class="appear-animate" ">
+    
+    
+        
+        <!-- Page Loader -->        
+        <div class="page-loader">
+            <div class="loader">Loading...</div>
+        </div>
+        <!-- End Page Loader -->
+        
+        <!-- Page Wrap -->
+        <div class="page" id="top">
+            
+          <!-- Navigation panel -->
+
+            <nav class="main-nav light stick-fixed" style="background-color: #f8f8f8">
+                <div class="full-wrapper relative clearfix">
+                    <!-- Logo ( * your text or image into link tag *) -->
+                    <div class="nav-logo-wrap local-scroll">
+                        <a href="#top" class="logo">
+                            <img src="/assets/logo2.png" alt="" />
+                        </a>
+                    </div>
+                    <div class="mobile-nav">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <!-- Main Menu -->
+                  <div class="inner-nav desktop-nav">
+                        <ul class="clearlist scroll-nav local-scroll">
+                            <li class="active"><a href="Dashboard_user.html">Home</a></li>
+                            <li><a href="Assignment_Answers.html">Report Card</a></li>
+                            <li><a href="#">Profile</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navigation panel -->
+            
+            
+            <!-- Section -->
+            <section style="width: 100%;background-color: white;">
+                <div class="relative container align-left" style="padding-top: 75px;">
+                   <h1 style="color:#f8c04d; font-weight: bold; font-size: 60px; text-align: center;border-bottom: 2px solid black;margin-bottom: 10px;">REPORT CARD</h1>
+                          
+
+                    <h1 style="font-size: 50px; color: black; font-weight: bold; margin-bottom: 10px; display: inline-block; border-bottom: 4px solid #f8c04d;">TOPIC 1</h1>      
+                    <br><br>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                    <p class="res" >TOTAL QUESTIONS: <%= @questions.length %></p>
+                    <br>
+                    <p class="res" style="color: green;">CORRECT ANSWERS: <%= @correctAns %></p>
+                    <br>
+                    <p class="res" style="color: red;">WRONG ANSWERS: <%= @questions.length-@correctAns %></p>
+                    <br>
+                </div>
+                <div style="width: 0.2%;background-color: grey;">
+                    
+                </div>
+                    <div style="width: 50%">
+                   <div class="outer">
+                        <% percentage=(@correctAns.to_f/@questions.length)*100 %>
+                       <div class="inner" style="width:<%= percentage %>%;">
+                       </div>
+                   </div>
+                   <h1 style="color: black;font-weight: bold;text-align: center;font-size: 80px;"><%=percentage%>%</h1>
+                  </div>
+               </div>
+                          <div id="assignment" style="margin-top: 100px;">
+
+                                    <% count=0 %>
+                                    <% for i in 0..@results.length-1 %>
+                                        <div>
+                                        <% count=count+1 %>
+                                        <% if @questions[i].id == @results[i].question_id %>    
+                                             <h1 style="margin-bottom: 10px;">
+                                                <%= @questions[i].ques %>
+                                            </h1>
+                                            <% if @questions[i].answer == "A" %>
+                                            <%= label_tag "option1-q#{count}", "#{@questions[i].option1}&nbsp; <i class='fa fa-check'></i>".html_safe,class: "correct" %>
+                                            <% elsif @results[i].ans_marked=="A"%>
+                                            <%= label_tag "option1-q#{count}", "#{@questions[i].option1}&nbsp; <i class='fa fa-times'></i>".html_safe,class: "wrong" %>
+                                            <% else %>
+                                            <%= label_tag "option1-q#{count}", "#{@questions[i].option1}"%>    
+                                            <% end %>
+                                            <br>
+
+                                            <% if @questions[i].answer == "B" %>
+                                            <%= label_tag "option2-q#{count}", "#{@questions[i].option2}&nbsp; <i class='fa fa-check'></i>".html_safe,class: "correct" %>
+                                            <% elsif @results[i].ans_marked=="B"%>
+                                            <%= label_tag "option2-q#{count}", "#{@questions[i].option2}&nbsp; <i class='fa fa-times'></i>".html_safe,class: "wrong" %>
+                                            <% else %>
+                                            <%= label_tag "option2-q#{count}", "#{@questions[i].option2}"%>    
+                                            <% end %>
+                                            <br>
+
+                                            <% if @questions[i].answer == "C" %>
+                                            <%= label_tag "option3-q#{count}", "#{@questions[i].option3}&nbsp; <i class='fa fa-check'></i>".html_safe,class: "correct" %>
+                                            <% elsif @results[i].ans_marked=="C"%>
+                                            <%= label_tag "option3-q#{count}", "#{@questions[i].option3}&nbsp; <i class='fa fa-times'></i>".html_safe,class: "wrong" %>
+                                            <% else %>
+                                            <%= label_tag "option3-q#{count}", "#{@questions[i].option3}"%>    
+                                            <% end %>
+                                            <br>
+
+                                            <hr style="background-color: #f8c04d;">
+                                        </div>
+                                        <% end %>
+                                    <% end %>
+
+
+                           <!-- <p style="margin-bottom: 10px;">
+                               1. What is a Computer?
+                            </p>
+                            <label>a system used to send speech or data over distances using a device</label>
+                            <br>
+                            <label class="correct">a programmable electronic device that can store, retrieve, and process data &nbsp; <i class="fas fa-check"></i></label>
+                            <br>
+                            <label>an electronic device used to receive sound and images</label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               2. What are the two types of computer parts?
+                            </p>
+                            <label>CD , Pendrive</label>
+                            <br>
+                            <label class="wrong">Mouse , Keyboard &nbsp; <i class="fas fa-times"></i></label>
+                            <br>
+                            <label class="correct">Hardware , Software &nbsp; <i class="fas fa-check"></i></label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               3. What is hardware?
+                            </p>
+                            <label>Programs Used To Run Computer</label>
+                            <br>
+                            <label class="correct">Physical parts of Computer that we can touch &nbsp; <i class="fas fa-check"></i></label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               4. What is Software?
+                            </p>
+                            <label class="correct">Programs Used To Run Computer &nbsp; <i class="fas fa-check"></i></label>
+                            <br>
+                            <label>Physical parts of Computer that we can touch</label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               5. What are Input Devices?
+                            </p>
+                            <label>device used to send data from a computer to a user</label>
+                            <br>
+                            <label>device capable of storing information permenantly or temporarily</label>
+                            <br>
+                            <label class="correct">device used to send data to computer &nbsp; <i class="fas fa-check"></i></label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               6. What are output devices
+                            </p>
+                            <label class="wrong">device capable of storing information permenantly or temporarily &nbsp; <i class="fas fa-times"></i></label>
+                            <br>
+                            <label class="correct">device used to send data from a computer to user. &nbsp; <i class="fas fa-check"></i></label>
+                            <br>
+                            <label>device used to send data to a computer</label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               7. What is Keyboard?
+                            </p>
+                            <label>an electrical device used to make sound or music louder</label>
+                            <br>
+                            <label>an input device that is most often used with a personal computer</label>
+                            <br>
+                            <label class="correct">an input device that allows a person to enter letters, numbers, and other symbols &nbsp; <i class="fas fa-check"></i></label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               8. What are additional buttons in a Keyboard?
+                            </p>
+                            <label class="wrong">alphabets Button &nbsp; <i class="fas fa-times"></i></label>
+                            <br>
+                            <label>space Button</label>
+                            <br>
+                            <label class="correct">navigation and Number button &nbsp; <i class="fas fa-check"></i></label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               9. What is a Mouse?
+                            </p>
+                            <label>an electrical device used to make sound or music louder</label>
+                            <br>
+                            <label class="correct">an input device that is most often used for clicking with a personal computer &nbsp; <i class="fas fa-check"></i></label>
+                            <br>
+                            <label>an input device that allows a person to enter letters, numbers, and other symbols</label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;">
+
+                            <p style="margin-bottom: 10px;">
+                               10. What happens when we right click on the mouse?
+                            </p>
+                            <label class="correct">Opens Menu &nbsp; <i class="fas fa-check"></i></label>
+                            <br>
+                            <label class="wrong">Opens Icon &nbsp; <i class="fas fa-times"></i></label>
+                            <br>
+                            <label>Selects the Icon</label>
+                            <br>
+
+                            <hr style="background-color: #f8c04d;"> -->
+                            <br>
+                            <div style="display: flex;justify-content: center;">
+                                <div id="subb">
+                                    <a href="handout1.pdf" target="_blank" style="text-decoration: none;">STUDY MATERIAL</a>
+                                </div>
+                             </div>
+                        </div>    
+                    
+                </div>
+            </section>
+            <!-- End Section -->
+            
+
+            
+            
+            <!-- Divider -->
+            <hr class="mt-0 mb-0 "/>
+            <!-- End Divider -->
+            
+                        <!-- Footer -->
+            <footer class="page-section bg-gray-lighter footer pb-40" style="padding-top: 50px;">
+                <div style="display: flex; justify-content: space-around;">
+                    
+                    <div style="width: 20%;text-align: center; color: black;letter-spacing: 0.2em;">
+                        <hr class="hrstyle">
+                        <h2>ABOUT ENACTUS DTU</h2>
+                        <p>WE, at Enactus DTU, apply entrepreneurial concepts to develop dynamic projects that take advantage of people’s inherent dexterity and aptitude at the center of improving their livelihoods.</p>
+                        <hr class="hrstyle">
+                    </div>
+
+                    <div>
+                                <!-- Footer Logo -->
+                                <div style="display: flex;justify-content: center;">
+                                    <div class="local-scroll wow fadeInUp" data-wow-duration="1.2s" style="width: 50%;">
+                                        <a href="#top"><img src="/assets/Unnati.png" width="150" height="150" alt="" /></a>&nbsp;
+                                    </div>
+                                </div>
+                                <!-- End Footer Logo -->
+
+                                <div style="display: flex;justify-content: center;margin-bottom: 20px; ">
+                                 <div style="width: 1px;height:50px;background-color:grey">
+                                     
+                                 </div>
+                              </div>
+
+                                <!-- Social Links -->
+                                <div class="footer-social-links mb-xs-40">
+                                    <a href="https://www.facebook.com/DTU2018RotaractMUN/?ref=br_rs" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    <a href="https://twitter.com/rotaractdtu?lang=en" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    <a href="https://www.instagram.com/rotaract_dtu/" title="Instagarm" target="_blank"><i class="fa fa-instagram"></i></a>
+                                    <a href="https://rotaractdtu.wordpress.com" title="wordpress" target="_blank"><i class="fa fa-wordpress"></i></a>
+                                    <a href="https://in.linkedin.com/company/rotaract-club-of-dtu" title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
+
+                                </div>
+                                <!-- End Social Links -->  
+                                
+                                <div style="display: flex;justify-content: center;margin-top:20px;margin-bottom: 10px; ">
+                                 <div style="width: 1px;height:50px;background-color:grey">
+                                     
+                                 </div>
+                              </div>
+                                <!-- Footer Text -->
+                                <div class="footer-text">
+                                    <div class="footer-made">
+                                        Made With <span style="color: #e25555;">&hearts;</span> by Enactus, Delhi Technological University
+                                    </div>
+                                </div>
+                        <!-- End Footer Text --> 
+                        
+
+                     </div>
+
+
+                     <div style="width: 20%;text-align: center; color: black;letter-spacing: 0.2em;">
+                      
+                      <hr class="hrstyle">
+                       <h2 style="margin-bottom: 5px;">FACING AN ISSUE?</h2>
+                        <h4>CONTACT US</h4>
+                        <p>Mail Us:<br><a HREF="mailto:unnati.enactus.dtu@gmail.com">unnati.enactus.dtu@gmail.com</a></p>
+                         <hr class="hrstyle">
+
+                     </div>
+
+
+                </div>
+            </footer>
+
+            <!-- End Footer -->
+        
+        
+        </div>
+        <!-- End Page Wrap -->
+        
+        
+        <!-- JS -->
+        <script type="text/javascript" src="/assets/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="/assets/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/assets/SmoothScroll.js"></script>
+        <script type="text/javascript" src="/assets/jquery.scrollTo.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.localScroll.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.viewport.mini.js"></script>
+        <script type="text/javascript" src="/assets/jquery.countTo.js"></script>
+        <script type="text/javascript" src="/assets/jquery.appear.js"></script>
+        <script type="text/javascript" src="/assets/jquery.sticky.js"></script>
+        <script type="text/javascript" src="/assets/jquery.parallax-1.1.3.js"></script>
+        <script type="text/javascript" src="/assets/jquery.fitvids.js"></script>
+        <script type="text/javascript" src="/assets/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="/assets/isotope.pkgd.min.js"></script>
+        <script type="text/javascript" src="/assets/imagesloaded.pkgd.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.magnific-popup.min.js"></script>
+        <!-- Replace test API Key "AIzaSyAZsDkJFLS0b59q7cmW0EprwfcfUA8d9dg" with your own one below 
+        **** You can get API Key here - https://developers.google.com/maps/documentation/javascript/get-api-key -->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZsDkJFLS0b59q7cmW0EprwfcfUA8d9dg"></script>
+        <script type="text/javascript" src="/assets/gmap3.min.js"></script>
+        <script type="text/javascript" src="/assets/wow.min.js"></script>
+        <script type="text/javascript" src="/assets/masonry.pkgd.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.simple-text-rotator.min.js"></script>
+        <script type="text/javascript" src="/assets/all.js"></script>
+        <script type="text/javascript" src="/assets/contact-form.js"></script>
+        <script type="text/javascript" src="/assets/jquery.ajaxchimp.min.js"></script>
+        <!--[if lt IE 10]>
+                <script type="text/javascript" src="/assets/placeholder.js"></script><![endif]-->
+
+<script src="/assets/main.js"></script> <!-- Resource jQuery -->
+
+    </body>
+</html>
