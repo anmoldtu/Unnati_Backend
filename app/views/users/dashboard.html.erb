@@ -1,3 +1,4 @@
+<% @title="Unnati Software | Dashboard" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -169,8 +170,9 @@
                   <div class="inner-nav desktop-nav">
                         <ul class="clearlist scroll-nav local-scroll">
                             <li class="active"><%=link_to "Home",users_dashboard_path,method: :get%>  </li>
-                            <li class="active"><%=link_to "Report Card",users_dashboard_path,method: :get%>  </li>
-                            <li class="active"><%=link_to "Profile",users_dashboard_path,method: :get%>  </li>
+                            <li><%=link_to "Report Card",users_dashboard_path,method: :get%>  </li>
+                            <li><%=link_to "Profile",users_dashboard_path,method: :get%>  </li>
+                            <li><%=link_to "Sign Out",destroy_user_session_path,method: :delete%>  </li>
                         </ul>
                     </div>
                 </div>
@@ -179,7 +181,7 @@
             
             
             <!-- Section -->
-            <section style="width: 100%; height: 180vh; background-color:white ;">
+            <section style="width: 100%; background-color:white ;">
                 <div class="relative container align-left" style="padding-top: 75px;">
                    <h1 style="color:#f8c04d; font-weight: bold; font-size: 50px;">WELCOME USER!</h1>
 
@@ -221,25 +223,34 @@
 
 
 
-                <div style="display: flex;justify-content: space-around; flex-wrap: wrap;">
+                <div style="display: flex;justify-content: space-around; flex-wrap: wrap;padding-bottom: 80px;">
+
+                <% front=["red","green","orangered","darkcyan","blue","orange"] %>
+                <% back=["dodgerblue","yellow","red","orangered","blueviolet","cyan"] %>
+                <% count=0 %>
+                <% @mods.each do |m| %>
+                    
                     <div style="width: 30%;">
                         <div class='card'>
-                            <div class='front' style="background-color: red;">
+                            <div class='front' style="background-color: <%=front[count]%>;">
                                 <br>
                                 <br>
-                                 <div style="font-size: 35px;">INTRODUCTION<br>TO<br>COMPUTERS </div>
+                                 <div style="font-size: 35px; text-transform: uppercase;"><%= m.name %></div>
                                 <br>
                                 <br>
                             </div>
-                            <div class='back'style="background-color:dodgerblue;font-size: 20px;font-weight: bold;text-align: center;color: black;letter-spacing: 0.2em;font-family: Open Sans;">
-                               <a href="Video.html"><p style="padding-top: 20px;">VIDEO</p></a>
-                               <a href="#"><p>ASSIGNMENT</p></a>
-                               <a href="#"><p>STUDY MATERIAL</p></a>
+                            <div class='back'style="background-color:<%=back[count]%>;font-size: 20px;font-weight: bold;text-align: center;letter-spacing: 0.2em;font-family: Open Sans;">
+                               <li style="padding:20px;color: white;"><%=link_to "VIDEO",users_video_path(m.id),method: :get%>  </li>
+                               <li style="padding:20px;color: white;"><%=link_to "ASSIGNMENT",users_Assignment_path(m.id),method: :get%>  </li>
+                               <li style="padding:20px;color: white;"><%=link_to "STUDY MATERIAL",users_dashboard_path,method: :get%>  </li>
                             </div>
                         </div>
                     </div>
+                    <% count=count+1 %>
+                <% end %>
                     
-                    <div style="width: 30%;">
+                    
+<!--                     <div style="width: 30%;">
                         <div class='card'>
                             <div class='front' style="background-color: green;">
                                 <br>
@@ -322,7 +333,7 @@
                                <a href="#"><p>STUDY MATERIAL</p></a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
 

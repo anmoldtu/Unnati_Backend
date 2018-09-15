@@ -1,3 +1,4 @@
+<% @title="Unnati Software | Result" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -65,9 +66,7 @@
                     <!-- Main Menu -->
                   <div class="inner-nav desktop-nav">
                         <ul class="clearlist scroll-nav local-scroll">
-                            <li class="active"><a href="Dashboard_user.html">Home</a></li>
-                            <li><a href="Assignment_Answers.html">Report Card</a></li>
-                            <li><a href="#">Profile</a></li>
+                            <li class="active"><%=link_to "Home",users_dashboard_path,method: :get%>  </li>
                         </ul>
                     </div>
                 </div>
@@ -101,7 +100,7 @@
                        <div class="inner" style="width:<%= percentage %>%;">
                        </div>
                    </div>
-                   <h1 style="color: black;font-weight: bold;text-align: center;font-size: 80px;"><%=percentage%>%</h1>
+                   <h1 style="color: black;font-weight: bold;text-align: center;font-size: 80px;"><%=percentage.to_i%>%</h1>
                   </div>
                </div>
                           <div id="assignment" style="margin-top: 100px;">
@@ -263,7 +262,7 @@
 
                             <hr style="background-color: #f8c04d;"> -->
                             <br>
-                            <div style="display: flex;justify-content: center;">
+                            <div style="display: flex;justify-content: center; padding-bottom: 40px;">
                                 <div id="subb">
                                     <a href="handout1.pdf" target="_blank" style="text-decoration: none;">STUDY MATERIAL</a>
                                 </div>

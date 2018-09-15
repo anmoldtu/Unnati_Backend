@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
-
+	before_action :authenticate_user!
 	def dashboard
-		
+		@mods=Mod.all
 	end
 
 	def Assignment
+		@results=Result.where(user_id:current_user.id,mod_id:params[:id])
+		if(!@results.blank?)
+			return redirect_to action:'result_show',uid:current_user.id,mid:params[:id] 
+		end	 
 		@questions=Question.where(mod_id: params[:id])
 	end
 
@@ -18,10 +22,10 @@ class UsersController < ApplicationController
 				corr=0
 			end		
 
-			Result.create(user_id: 1, question_id: params["ques_id-#{i}".to_sym], mod_id: params[:mod_id], ans_marked: params["ques-#{i}".to_sym],correct: corr)
+			Result.create(user_id: current_user.id, question_id: params["ques_id-#{i}".to_sym], mod_id: params[:mod_id], ans_marked: params["ques-#{i}".to_sym],correct: corr)
 		end
 
-		redirect_to action: 'result_show',uid:1,mid:params[:mod_id] 
+		redirect_to action: 'result_show',uid:current_user.id,mid:params[:mod_id] 
 
 	end	
 
@@ -33,4 +37,8 @@ class UsersController < ApplicationController
 		@questions=Question.where(mod_id: params[:mid])
 		@correctAns=Result.where(user_id:params[:uid],mod_id:params[:mid],correct: 1).length
 	end	
+
+	def video
+		@mod=Mod.find(params[:id])
+	end
 end
