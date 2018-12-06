@@ -1,0 +1,110 @@
+<% @title="Unnati Software | Dashboard" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Solution | Assignment</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta charset="utf-8">
+        <meta name="author" content="Roman Kirichik">
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="/assets/favicon2.png">
+        <link rel="apple-touch-icon" href="/assets/logo12.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/assets/logo13.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/assets/logo11.png">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="/assets/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/style.css">
+        <link rel="stylesheet" href="/assets/style-responsive.css">
+        <link rel="stylesheet" href="/assets/animate.min.css">
+        <link rel="stylesheet" href="/assets/vertical-rhythm.min.css">
+        <link rel="stylesheet" href="/assets/owl.carousel.css">
+        <link rel="stylesheet" href="/assets/magnific-popup.css">
+            <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+
+    
+
+
+    </head>
+    
+
+    <body class="appear-animate" ">
+    
+    
+        
+        <!-- Page Loader -->        
+        <div class="page-loader">
+            <div class="loader">Loading...</div>
+        </div>
+        <!-- End Page Loader -->
+        
+        <!-- Page Wrap -->
+        <div class="page" id="top">
+            
+          <!-- Navigation panel -->
+
+            
+            
+            <!-- Section -->
+            <section style="width: 100%; background-color:white ;">
+                <div class="relative container align-left" style="padding-top: 75px;">
+                   <h1 style="color:#f8c04d; font-weight: bold; font-size: 50px;text-align: center;text-transform: uppercase;">Your Course has Expired!<br>
+                   Redirecting...</h1>
+
+                   <%=link_to "Sign Out",destroy_user_session_path,method: :delete,id: "sign_out",style: "display:none"%> 
+
+                </div>
+            </section>
+            <!-- End Section -->
+
+            
+            
+            
+        </div>
+        <!-- End Page Wrap -->
+        
+        
+        <!-- JS -->
+
+        <script type="text/javascript">
+            window.setTimeout(function(){
+                document.getElementById("sign_out").click();
+            },2000)
+        </script>
+
+
+        <script type="text/javascript" src="/assets/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="/assets/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/assets/SmoothScroll.js"></script>
+        <script type="text/javascript" src="/assets/jquery.scrollTo.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.localScroll.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.viewport.mini.js"></script>
+        <script type="text/javascript" src="/assets/jquery.countTo.js"></script>
+        <script type="text/javascript" src="/assets/jquery.appear.js"></script>
+        <script type="text/javascript" src="/assets/jquery.sticky.js"></script>
+        <script type="text/javascript" src="/assets/jquery.parallax-1.1.3.js"></script>
+        <script type="text/javascript" src="/assets/jquery.fitvids.js"></script>
+        <script type="text/javascript" src="/assets/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="/assets/isotope.pkgd.min.js"></script>
+        <script type="text/javascript" src="/assets/imagesloaded.pkgd.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.magnific-popup.min.js"></script>
+        <!-- Replace test API Key "AIzaSyAZsDkJFLS0b59q7cmW0EprwfcfUA8d9dg" with your own one below 
+        **** You can get API Key here - https://developers.google.com/maps/documentation/javascript/get-api-key -->
+        <script type="text/javascript" src="/assets/wow.min.js"></script>
+        <script type="text/javascript" src="/assets/masonry.pkgd.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.simple-text-rotator.min.js"></script>
+        <script type="text/javascript" src="/assets/all.js"></script>
+        <script type="text/javascript" src="/assets/contact-form.js"></script>
+        <script type="text/javascript" src="/assets/jquery.ajaxchimp.min.js"></script>
+        <!--[if lt IE 10]>
+                <script type="text/javascript" src="/assets/placeholder.js"></script><![endif]-->
+
+<script src="/assets/main.js"></script> <!-- Resource jQuery -->
+    </body>
+</html>

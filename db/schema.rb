@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_10_202816) do
+ActiveRecord::Schema.define(version: 2018_10_08_145051) do
 
   create_table "admins", force: :cascade do |t|
     t.string "username", null: false
@@ -19,10 +19,67 @@ ActiveRecord::Schema.define(version: 2018_09_10_202816) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "attendanceadmins", force: :cascade do |t|
+    t.string "user_name"
+    t.integer "status"
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "area"
+    t.integer "user_id"
+  end
+
+  create_table "attendanceentres", force: :cascade do |t|
+    t.string "user_name"
+    t.integer "status"
+    t.string "date"
+    t.string "area"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
+  create_table "bios", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "course_id", null: false
+    t.string "name", null: false
+    t.string "area", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "fees"
+    t.datetime "expirytime"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "entrebios", force: :cascade do |t|
+    t.integer "entre_id", null: false
+    t.string "name"
+    t.string "area"
+    t.integer "money"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "entres", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_entres_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_entres_on_reset_password_token", unique: true
   end
 
   create_table "fields", force: :cascade do |t|
@@ -37,6 +94,10 @@ ActiveRecord::Schema.define(version: 2018_09_10_202816) do
     t.integer "course_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "document_file_name"
+    t.string "document_content_type"
+    t.bigint "document_file_size"
+    t.datetime "document_updated_at"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -48,6 +109,20 @@ ActiveRecord::Schema.define(version: 2018_09_10_202816) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ques"
+    t.string "queshin"
+    t.string "option1hin"
+    t.string "option2hin"
+    t.string "option3hin"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "mod_id", null: false
+    t.integer "correctans"
+    t.integer "wrongans"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "modname"
   end
 
   create_table "results", force: :cascade do |t|

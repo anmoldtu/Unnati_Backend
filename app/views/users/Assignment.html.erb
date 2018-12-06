@@ -21,12 +21,10 @@
         <link rel="stylesheet" href="/assets/style.css">
         <link rel="stylesheet" href="/assets/style-responsive.css">
         <link rel="stylesheet" href="/assets/animate.min.css">
-        <script src="https://www.paypalobjects.com/api/checkout.js"></script>
         <link rel="stylesheet" href="/assets/vertical-rhythm.min.css">
         <link rel="stylesheet" href="/assets/owl.carousel.css">
         <link rel="stylesheet" href="/assets/magnific-popup.css">
-            <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-
+        
         
     </head>
     
@@ -72,19 +70,23 @@
             <!-- Section -->
             <section style="width: 100%; background-color: white;">
                 <div class="relative container align-left" style="padding-top: 75px;">
-                   <h1 style="color:#f8c04d; font-weight: bold; font-size: 40px; text-align: center;margin-bottom: 5px;">INTRODUCTION TO COMPUTER</h1>
+                   <h1 style="color:#f8c04d; font-weight: bold; font-size: 40px; text-align: center;margin-bottom: 5px;"><%= @questions[0].mod.name %></h1>
                                       <h1 style="color:black; font-weight: bold; font-size: 30px; text-align: center;margin-top: 3px;">ASSIGNMENT</h1>
-
+                                      <div style="display: flex;align-items: flex-end;">
+                                           <button style="font-size: 30px;color: black;background-color: #f8c04d;height: 80px;padding: 10px;font-weight: bold;border:2px solid black; " id="demo" onclick="myFunction()">View in Hindi</button>
+                                      </div>
                               <div id="assignment">
                                 <%= form_tag users_result_create_path,method: :post do %>
+                                <div id="english">
                                     <% count=0 %>
                                     <% @questions.each do |q| %>
 
 
                                         <% count=count+1 %>
-                                         <p style="margin-bottom: 10px;">
-                                            <%= q.ques %>
-                                        </p>
+
+                                        <h1 style="margin-bottom: 10px;">
+                                                <%= q.ques %>
+                                        </h1>
                                         <%= hidden_field_tag 'mod_id', "#{q.mod.id}" %>
                                          <%= hidden_field_tag "ques_id-#{count}", "#{q.id}" %>
                                         <%= radio_button_tag "ques-#{count}", 'A' %>
@@ -101,6 +103,35 @@
                                         <hr style="background-color: #f8c04d;">
                                     <% end %>
                                       <br>
+                                </div>      
+
+                                <div id="hindi" style="display: none;">
+                                    <% count=0 %>
+                                    <% @questions.each do |q| %>
+
+
+                                        <% count=count+1 %>
+
+                                        <h1 style="margin-bottom: 10px;">
+                                                <%= q.queshin %>
+                                        </h1>
+                                        <%= hidden_field_tag 'mod_id', "#{q.mod.id}" %>
+                                         <%= hidden_field_tag "ques_id-#{count}", "#{q.id}" %>
+                                        <%= radio_button_tag "ques-#{count}", 'A' %>
+                                        <%= label_tag "option1-q#{count}", "#{q.option1hin}" %>
+                                        <br>
+                                        <%= radio_button_tag "ques-#{count}", 'B' %>
+                                        <%= label_tag "option2-q#{count}", "#{q.option2hin}" %>
+                                        <br>
+                                        <%= radio_button_tag "ques-#{count}", 'C' %>
+                                        <%= label_tag "option3-q#{count}", "#{q.option3hin}" %>
+                                        <br>
+
+
+                                        <hr style="background-color: #f8c04d;">
+                                    <% end %>
+                                      <br>
+                                </div>      
                                 <%= submit_tag "SUBMIT",id: "sub_butt" %>
                                 <% end %>
                             <!-- <p style="margin-bottom: 10px;">
@@ -289,12 +320,11 @@
 
                                 <!-- Social Links -->
                                 <div class="footer-social-links mb-xs-40">
-                                    <a href="https://www.facebook.com/DTU2018RotaractMUN/?ref=br_rs" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-                                    <a href="https://twitter.com/rotaractdtu?lang=en" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-                                    <a href="https://www.instagram.com/rotaract_dtu/" title="Instagarm" target="_blank"><i class="fa fa-instagram"></i></a>
-                                    <a href="https://rotaractdtu.wordpress.com" title="wordpress" target="_blank"><i class="fa fa-wordpress"></i></a>
-                                    <a href="https://in.linkedin.com/company/rotaract-club-of-dtu" title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
-
+                                    <a title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    <a title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    <a title="Instagarm" target="_blank"><i class="fa fa-instagram"></i></a>
+                                    <a title="wordpress" target="_blank"><i class="fa fa-wordpress"></i></a>
+                                    <a title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
                                 </div>
                                 <!-- End Social Links -->  
                                 
@@ -336,6 +366,27 @@
         
         
         <!-- JS -->
+        <script type="text/javascript">
+            function myFunction()
+            {
+                var x=document.getElementById("english").style.display;
+                if(x=="none")
+                {
+                    document.getElementById("english").style.display="block";
+                    document.getElementById("hindi").style.display="none";
+                    document.getElementById("demo").innerHTML="View in Hindi";
+
+                }
+                else
+                {
+                    document.getElementById("english").style.display="none";
+                    document.getElementById("hindi").style.display="block";
+                    document.getElementById("demo").innerHTML="View in English";
+
+
+                }
+            }
+        </script>
         <script type="text/javascript" src="/assets/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="/assets/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="/assets/bootstrap.min.js"></script>
@@ -352,8 +403,6 @@
         <script type="text/javascript" src="/assets/isotope.pkgd.min.js"></script>
         <script type="text/javascript" src="/assets/imagesloaded.pkgd.min.js"></script>
         <script type="text/javascript" src="/assets/jquery.magnific-popup.min.js"></script>
-        <!-- Replace test API Key "AIzaSyAZsDkJFLS0b59q7cmW0EprwfcfUA8d9dg" with your own one below 
-        **** You can get API Key here - https://developers.google.com/maps/documentation/javascript/get-api-key -->
         <script type="text/javascript" src="/assets/wow.min.js"></script>
         <script type="text/javascript" src="/assets/masonry.pkgd.min.js"></script>
         <script type="text/javascript" src="/assets/jquery.simple-text-rotator.min.js"></script>

@@ -5,10 +5,7 @@
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
-@font-face {
-  font-family: Raleway-Regular;
-  src: url('/assets/raleway/Raleway-Regular.ttf'); 
-}
+
 
 @font-face {
   font-family: Raleway-Medium;

@@ -1,0 +1,286 @@
+<% @title="Unnati Software | Profile" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Solution | Assignment</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta charset="utf-8">
+        <meta name="author" content="Roman Kirichik">
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="/assets/favicon2.png">
+        <link rel="apple-touch-icon" href="/assets/logo12.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/assets/logo13.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/assets/logo11.png">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="/assets/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/style.css">
+        <link rel="stylesheet" href="/assets/style-responsive.css">
+        <link rel="stylesheet" href="/assets/animate.min.css">
+        <link rel="stylesheet" href="/assets/vertical-rhythm.min.css">
+        <link rel="stylesheet" href="/assets/owl.carousel.css">
+        <link rel="stylesheet" href="/assets/magnific-popup.css">
+
+
+        <style type="text/css">
+
+        * {
+        box-sizing: border-box;
+        font-family: 'Muli', sans-serif;
+    }
+
+    
+    #info h1{
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    #reportcont{
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+    #reportcont th{
+        text-align: center!important;
+        border-bottom: 2px solid grey;
+    }
+    #reportcont td a{
+        text-decoration: none;
+        font-size: 25px;
+        color: grey;
+    }
+    #reportcont td a:hover{
+        text-decoration: underline;
+        color: #f8c04d;
+    }
+</style>
+
+
+
+    </head>
+    
+
+    <body class="appear-animate" ">
+    
+    
+        
+        <!-- Page Loader -->        
+        <div class="page-loader">
+            <div class="loader">Loading...</div>
+        </div>
+        <!-- End Page Loader -->
+        
+        <!-- Page Wrap -->
+        <div class="page" id="top">
+            
+          <!-- Navigation panel -->
+
+            <nav class="main-nav light stick-fixed" style="background-color: #f8f8f8">
+                <div class="full-wrapper relative clearfix">
+                    <!-- Logo ( * your text or image into link tag *) -->
+                    <div class="nav-logo-wrap local-scroll">
+                        <a href="#top" class="logo">
+                            <img src="/assets/logo2.png" alt="" />
+                        </a>
+                    </div>
+                    <div class="mobile-nav">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <!-- Main Menu -->
+                  <div class="inner-nav desktop-nav">
+                        <ul class="clearlist scroll-nav local-scroll">
+                            <% if(@type=="entre") %>
+                            <li class="active"><%=link_to "Home",entres_dashboard_path,method: :get%>  </li>
+                            <% else %>
+                             <li class="active"><%=link_to "Home",users_dashboard_path,method: :get%>  </li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navigation panel -->
+            
+            
+            <!-- Section -->
+            <section style="width: 100%; background-color:white ;">
+                <div class="relative container align-left" style="padding-top: 75px;">
+                   <h1 style="color:#f8c04d; font-weight: bold; font-size: 80px;text-align: center;text-transform: uppercase;border-bottom: 2px solid black;"><%=@userbio.name %></h1>
+                   <div style="display: flex;justify-content: space-between;">
+                       <div id="info" style="color: #f8c04d;text-transform: uppercase; width: 40%;">
+                           <h1><span style="color: grey;">AREA: </span><%= @userbio.area %></h1>
+                           <h1><span style="color: grey;">FEES PAID: </span><%= @userbio.fees %></h1>
+                        </div>
+
+                    <div style="width: 0.1%;background-color: grey;">
+                    
+
+                    </div>
+                        <div style="width: 50%">
+                            <div class="outer">
+                                
+                               <div class="inner" style="width: <%= perc=((@reports.length.to_f*100)/@modlength).to_i %>%">
+                                </div>
+                            </div>
+                            <h1 style="color: black;font-weight: bold;text-align: center;font-size: 80px;margin-bottom: 10px"><%= perc %>%</h1>
+                            <p><span style="background-color: green;">&nbsp;&nbsp;&nbsp;&nbsp;</span> MODULES COMPLETED: <%= @reports.length %> </p>
+                            <p><span style="background-color: red;"> &nbsp;&nbsp;&nbsp;&nbsp;</span> MODULES LEFT: <%= @modlength-@reports.length %></p>
+
+                        </div>
+
+                    </div>
+                <hr width="100%" style="background-color: grey;">
+
+                <div style="display: flex; justify-content: space-between;">
+                        <div>
+  
+                          <h1 style="color:grey; font-weight: bold; font-size: 35px;margin-bottom: 0px;width: 260.59px;text-align: center; ">MODULE WISE REPORT </h1>
+                            <hr class="hrstyle">
+                        </div>
+
+                        <div style="width: 50%">
+                        </div>
+
+               </div>
+
+
+               <table width="100%" id="reportcont">
+                    <thead>
+                        <tr>
+                            <th style="font-size: 30px;color:grey;width:40%;border-right: 2px solid grey;">MODULE</th>
+                            <th style="font-size: 20px;color: green;">CORRECT ANSWERS</th>
+                            <th style="font-size: 20px;color: red;">WRONG ANSWERS</th>
+                            <th style="font-size: 20px;color: #f8c04d;">PERCENTAGE</th>
+                        </tr>    
+                    </thead>
+                   <tbody style="text-align: center;">
+                        <% @reports.each do |r| %>
+                        <tr>
+                           <td style="font-size: 40px;color: grey;border-right: 2px solid grey;"><%=link_to "#{r.modname}",users_result_show_path(r.user_id,r.mod_id),method: :get%>  </td>
+                           <td style="font-size: 15px;color: green;"><%= r.correctans %></td>
+                           <td style="font-size: 15px;color: red;"><%= r.wrongans %></td>
+                           <td style="font-size: 15px;color: #f8c04d;">
+                            <% per=(r.correctans.to_f*100)/(r.correctans+r.wrongans) %>
+                            <%= per.to_i %>%
+                           </td>
+                        </tr>   
+                        <% end %>
+                   </tbody>
+               </table>
+                </div>
+            </section>
+            <!-- End Section -->
+
+            
+            
+            <!-- Divider -->
+            <hr class="mt-0 mb-0 "/>
+            <!-- End Divider -->
+            
+
+
+
+                        <!-- Footer -->
+            <footer class="page-section bg-gray-lighter footer pb-40" style="padding-top: 50px;">
+                <div style="display: flex; justify-content: space-around;">
+                    
+                    <div style="width: 20%;text-align: center; color: black;letter-spacing: 0.2em;">
+                        <hr class="hrstyle">
+                        <h2>ABOUT ENACTUS DTU</h2>
+                        <p>WE, at Enactus DTU, apply entrepreneurial concepts to develop dynamic projects that take advantage of people’s inherent dexterity and aptitude at the center of improving their livelihoods.</p>
+                        <hr class="hrstyle">
+                    </div>
+
+                    <div>
+                                <!-- Footer Logo -->
+                                <div style="display: flex;justify-content: center;">
+                                    <div class="local-scroll wow fadeInUp" data-wow-duration="1.2s" style="width: 50%;">
+                                        <a href="#top"><img src="/assets/Unnati.png" width="150" height="150" alt="" /></a>&nbsp;
+                                    </div>
+                                </div>
+                                <!-- End Footer Logo -->
+
+                                <div style="display: flex;justify-content: center;margin-bottom: 20px; ">
+                                 <div style="width: 1px;height:50px;background-color:grey">
+                                     
+                                 </div>
+                              </div>
+
+                                <!-- Social Links -->
+                                <div class="footer-social-links mb-xs-40">
+                                    <a title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    <a title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    <a title="Instagarm" target="_blank"><i class="fa fa-instagram"></i></a>
+                                    <a title="wordpress" target="_blank"><i class="fa fa-wordpress"></i></a>
+                                    <a title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
+
+                                </div>
+                                <!-- End Social Links -->  
+                                
+                                <div style="display: flex;justify-content: center;margin-top:20px;margin-bottom: 10px; ">
+                                 <div style="width: 1px;height:50px;background-color:grey">
+                                     
+                                 </div>
+                              </div>
+                                <!-- Footer Text -->
+                                <div class="footer-text">
+                                    <div class="footer-made">
+                                        Made With <span style="color: #e25555;">&hearts;</span> by Enactus, Delhi Technological University
+                                    </div>
+                                </div>
+                        <!-- End Footer Text --> 
+                        
+
+                     </div>
+
+
+                     <div style="width: 20%;text-align: center; color: black;letter-spacing: 0.2em;">
+                      
+                      <hr class="hrstyle">
+                       <h2 style="margin-bottom: 5px;">FACING AN ISSUE?</h2>
+                        <h4>CONTACT US</h4>
+                        <p>Mail Us:<br><a HREF="mailto:unnati.enactus.dtu@gmail.com">unnati.enactus.dtu@gmail.com</a></p>
+                         <hr class="hrstyle">
+
+                     </div>
+
+
+                </div>
+            </footer>
+
+            <!-- End Footer -->
+        
+        
+        </div>
+        <!-- End Page Wrap -->
+        
+        
+        <!-- JS -->
+        <script type="text/javascript" src="/assets/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="/assets/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/assets/SmoothScroll.js"></script>
+        <script type="text/javascript" src="/assets/jquery.scrollTo.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.localScroll.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.viewport.mini.js"></script>
+        <script type="text/javascript" src="/assets/jquery.countTo.js"></script>
+        <script type="text/javascript" src="/assets/jquery.appear.js"></script>
+        <script type="text/javascript" src="/assets/jquery.sticky.js"></script>
+        <script type="text/javascript" src="/assets/jquery.parallax-1.1.3.js"></script>
+        <script type="text/javascript" src="/assets/jquery.fitvids.js"></script>
+        <script type="text/javascript" src="/assets/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="/assets/isotope.pkgd.min.js"></script>
+        <script type="text/javascript" src="/assets/imagesloaded.pkgd.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.magnific-popup.min.js"></script>
+        <script type="text/javascript" src="/assets/wow.min.js"></script>
+        <script type="text/javascript" src="/assets/masonry.pkgd.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.simple-text-rotator.min.js"></script>
+        <script type="text/javascript" src="/assets/all.js"></script>
+        <script type="text/javascript" src="/assets/contact-form.js"></script>
+        <script type="text/javascript" src="/assets/jquery.ajaxchimp.min.js"></script>
+
+<script src="/assets/main.js"></script> <!-- Resource jQuery -->
+    </body>
+</html>

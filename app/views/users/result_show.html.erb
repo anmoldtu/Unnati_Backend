@@ -21,18 +21,9 @@
         <link rel="stylesheet" href="/assets/style.css">
         <link rel="stylesheet" href="/assets/style-responsive.css">
         <link rel="stylesheet" href="/assets/animate.min.css">
-        <script src="https://www.paypalobjects.com/api/checkout.js"></script>
         <link rel="stylesheet" href="/assets/vertical-rhythm.min.css">
         <link rel="stylesheet" href="/assets/owl.carousel.css">
         <link rel="stylesheet" href="/assets/magnific-popup.css">
-    <link rel="stylesheet" href="/assets/stylefr.css">
-            <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0//assets/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
- <!-- CSS reset -->
-    <link rel="stylesheet" href="/assets/reset.css"> <!-- Resource style -->
-    <script src="/assets/modernizr.js"></script> <!-- Modernizr -->
-    
-        <link rel="stylesheet" href="/assets/style4.css"> <!-- Resource style -->
         
     </head>
     
@@ -77,10 +68,10 @@
             <!-- Section -->
             <section style="width: 100%;background-color: white;">
                 <div class="relative container align-left" style="padding-top: 75px;">
-                   <h1 style="color:#f8c04d; font-weight: bold; font-size: 60px; text-align: center;border-bottom: 2px solid black;margin-bottom: 10px;">REPORT CARD</h1>
+                   <h1 style="color:#f8c04d; font-weight: bold; font-size: 60px; text-align: center;border-bottom: 2px solid black;margin-bottom: 10px;"><%= @questions[0].mod.name %></h1>
                           
 
-                    <h1 style="font-size: 50px; color: black; font-weight: bold; margin-bottom: 10px; display: inline-block; border-bottom: 4px solid #f8c04d;">TOPIC 1</h1>      
+                    <h1 style="font-size: 50px; color: black; font-weight: bold; margin-bottom: 10px; display: inline-block; border-bottom: 4px solid #f8c04d;">RESULT</h1>      
                     <br><br>
                     <div style="display: flex; justify-content: space-between;">
                         <div>
@@ -103,8 +94,14 @@
                    <h1 style="color: black;font-weight: bold;text-align: center;font-size: 80px;"><%=percentage.to_i%>%</h1>
                   </div>
                </div>
-                          <div id="assignment" style="margin-top: 100px;">
 
+               <hr>
+               <div style="display: flex;align-items: flex-end;padding-top: 40px;">
+                                           <button style="font-size: 30px;color: black;background-color: #f8c04d;height: 80px;padding: 10px;font-weight: bold;border:2px solid black; " id="demo" onclick="myFunction()">View in Hindi</button>
+                </div>
+
+                          <div id="assignment" style="margin-top: 50px;">
+                                    <div id="english">
                                     <% count=0 %>
                                     <% for i in 0..@results.length-1 %>
                                         <div>
@@ -145,7 +142,49 @@
                                         <% end %>
                                     <% end %>
 
+                                 </div>
 
+                                 <div id="hindi" style="display: none;">
+                                     <% count=0 %>
+                                    <% for i in 0..@results.length-1 %>
+                                        <div>
+                                        <% count=count+1 %>
+                                        <% if @questions[i].id == @results[i].question_id %>    
+                                             <h1 style="margin-bottom: 10px;">
+                                                <%= @questions[i].queshin %>
+                                            </h1>
+                                            <% if @questions[i].answer == "A" %>
+                                            <%= label_tag "option1hin-q#{count}", "#{@questions[i].option1hin}&nbsp; <i class='fa fa-check'></i>".html_safe,class: "correct" %>
+                                            <% elsif @results[i].ans_marked=="A"%>
+                                            <%= label_tag "option1hin-q#{count}", "#{@questions[i].option1hin}&nbsp; <i class='fa fa-times'></i>".html_safe,class: "wrong" %>
+                                            <% else %>
+                                            <%= label_tag "option1hin-q#{count}", "#{@questions[i].option1hin}"%>    
+                                            <% end %>
+                                            <br>
+
+                                            <% if @questions[i].answer == "B" %>
+                                            <%= label_tag "option2hin-q#{count}", "#{@questions[i].option2hin}&nbsp; <i class='fa fa-check'></i>".html_safe,class: "correct" %>
+                                            <% elsif @results[i].ans_marked=="B"%>
+                                            <%= label_tag "option2hin-q#{count}", "#{@questions[i].option2hin}&nbsp; <i class='fa fa-times'></i>".html_safe,class: "wrong" %>
+                                            <% else %>
+                                            <%= label_tag "option2hin-q#{count}", "#{@questions[i].option2hin}"%>    
+                                            <% end %>
+                                            <br>
+
+                                            <% if @questions[i].answer == "C" %>
+                                            <%= label_tag "option3hin-q#{count}", "#{@questions[i].option3hin}&nbsp; <i class='fa fa-check'></i>".html_safe,class: "correct" %>
+                                            <% elsif @results[i].ans_marked=="C"%>
+                                            <%= label_tag "option3hin-q#{count}", "#{@questions[i].option3hin}&nbsp; <i class='fa fa-times'></i>".html_safe,class: "wrong" %>
+                                            <% else %>
+                                            <%= label_tag "option3hin-q#{count}", "#{@questions[i].option3hin}"%>    
+                                            <% end %>
+                                            <br>
+
+                                            <hr style="background-color: #f8c04d;">
+                                        </div>
+                                        <% end %>
+                                    <% end %>
+                                 </div>
                            <!-- <p style="margin-bottom: 10px;">
                                1. What is a Computer?
                             </p>
@@ -264,7 +303,7 @@
                             <br>
                             <div style="display: flex;justify-content: center; padding-bottom: 40px;">
                                 <div id="subb">
-                                    <a href="handout1.pdf" target="_blank" style="text-decoration: none;">STUDY MATERIAL</a>
+                                   <%=link_to "STUDY MATERIAL", "#{@questions[0].mod.document}",target: "_blank",style: 'text-decoration:none;'%>
                                 </div>
                              </div>
                         </div>    
@@ -274,7 +313,7 @@
             <!-- End Section -->
             
 
-            
+           
             
             <!-- Divider -->
             <hr class="mt-0 mb-0 "/>
@@ -308,11 +347,11 @@
 
                                 <!-- Social Links -->
                                 <div class="footer-social-links mb-xs-40">
-                                    <a href="https://www.facebook.com/DTU2018RotaractMUN/?ref=br_rs" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-                                    <a href="https://twitter.com/rotaractdtu?lang=en" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-                                    <a href="https://www.instagram.com/rotaract_dtu/" title="Instagarm" target="_blank"><i class="fa fa-instagram"></i></a>
-                                    <a href="https://rotaractdtu.wordpress.com" title="wordpress" target="_blank"><i class="fa fa-wordpress"></i></a>
-                                    <a href="https://in.linkedin.com/company/rotaract-club-of-dtu" title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                    <a title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    <a title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    <a title="Instagarm" target="_blank"><i class="fa fa-instagram"></i></a>
+                                    <a title="wordpress" target="_blank"><i class="fa fa-wordpress"></i></a>
+                                    <a title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
 
                                 </div>
                                 <!-- End Social Links -->  
@@ -356,6 +395,27 @@
         
         
         <!-- JS -->
+        <script type="text/javascript">
+            function myFunction()
+            {
+                var x=document.getElementById("english").style.display;
+                if(x=="none")
+                {
+                    document.getElementById("english").style.display="block";
+                    document.getElementById("hindi").style.display="none";
+                    document.getElementById("demo").innerHTML="View in Hindi";
+
+                }
+                else
+                {
+                    document.getElementById("english").style.display="none";
+                    document.getElementById("hindi").style.display="block";
+                    document.getElementById("demo").innerHTML="View in English";
+
+
+                }
+            }
+        </script>
         <script type="text/javascript" src="/assets/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="/assets/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="/assets/bootstrap.min.js"></script>
@@ -372,9 +432,6 @@
         <script type="text/javascript" src="/assets/isotope.pkgd.min.js"></script>
         <script type="text/javascript" src="/assets/imagesloaded.pkgd.min.js"></script>
         <script type="text/javascript" src="/assets/jquery.magnific-popup.min.js"></script>
-        <!-- Replace test API Key "AIzaSyAZsDkJFLS0b59q7cmW0EprwfcfUA8d9dg" with your own one below 
-        **** You can get API Key here - https://developers.google.com/maps/documentation/javascript/get-api-key -->
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZsDkJFLS0b59q7cmW0EprwfcfUA8d9dg"></script>
         <script type="text/javascript" src="/assets/gmap3.min.js"></script>
         <script type="text/javascript" src="/assets/wow.min.js"></script>
         <script type="text/javascript" src="/assets/masonry.pkgd.min.js"></script>
@@ -382,10 +439,6 @@
         <script type="text/javascript" src="/assets/all.js"></script>
         <script type="text/javascript" src="/assets/contact-form.js"></script>
         <script type="text/javascript" src="/assets/jquery.ajaxchimp.min.js"></script>
-        <!--[if lt IE 10]>
-                <script type="text/javascript" src="/assets/placeholder.js"></script><![endif]-->
-
-<script src="/assets/main.js"></script> <!-- Resource jQuery -->
 
     </body>
 </html>

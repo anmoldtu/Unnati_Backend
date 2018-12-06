@@ -1,0 +1,7 @@
+<h1>Upload Study Material</h1>
+
+<%= form_for @mod, url: create_study_material_path(@mod.id), html: { multipart: true }, method: :post do |form| %>
+  <%= form.file_field :document %>
+  <%= form.submit %>
+<% end %>
+

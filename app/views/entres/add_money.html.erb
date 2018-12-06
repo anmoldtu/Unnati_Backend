@@ -1,0 +1,60 @@
+<% @title="Unnati Software | Add Fees" %>
+<head>
+  <style type="text/css">
+    .field{
+      text-transform: uppercase;
+      font-size: 18px;
+    }
+    .field input{
+      border:2px solid black;
+      width: 100%;
+    }
+    .bord{
+      background-color: #f5f5f5;
+      border:3px solid black;
+      padding: 40px;
+    }
+    body{
+      background-color: #ffc220 !important;
+    }
+
+    .actions{
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    .actions input{
+      background-color: #ffc220;
+      height: 40px;
+      width: 100%;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 20px;
+      border:2px solid black;
+    }
+  </style>
+</head>
+
+<h1 style="text-align: center;font-size: 80px;text-transform: uppercase; margin-bottom: 0.5em">Add Money</h1>
+<hr class="hrstyle">
+<div class="container bord" style="display: flex;justify-content: center;align-items: center;width: 50%;margin-top: 100px;">
+  <div>
+
+    <%= form_tag entres_fees_deposit_path,method: :post do %>
+    <div class="field">
+      <%= label_tag :user %>
+      <%= select_tag 'user',options_from_collection_for_select(@users, "user_id", "name"),style: 'text-transform:capitalize;'%>
+
+    </div>
+    <br>
+
+    <div class="field">
+      <%= label_tag :fees %>
+      <%= number_field_tag 'fees' %>
+     </div>
+    <br>
+    <%= submit_tag "Submit" %>
+
+    <% end %>
+  </div>
+</div>

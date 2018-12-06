@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  entre_id: 1
+  name: MyString
+  area: MyString
+  money: 1
+
+two:
+  entre_id: 1
+  name: MyString
+  area: MyString
+  money: 1

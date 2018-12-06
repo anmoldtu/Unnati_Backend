@@ -1,22 +1,38 @@
 <li>	
 <%= label_tag "ques-#{n}", "ques-#{n}", class: 'cont' %>
 <%= text_field_tag "ques-#{n}", "", class: 'cont' %>
+
+<%= label_tag "queshin-#{n}", "queshin-#{n}", class: 'cont' %>
+<%= text_field_tag "queshin-#{n}", "", class: 'cont' %>
 <br><br><br><br>
 	<ul>
 		<li>
 			<%= label_tag "option1-q#{n}", "option1-q#{n}", class: 'cont' %>
 			<%= text_field_tag "option1-q#{n}", "", class: 'cont' %>
 		</li>
+		<li>
+			<%= label_tag "option1hin-q#{n}", "option1hin-q#{n}", class: 'cont' %>
+			<%= text_field_tag "option1hin-q#{n}", "", class: 'cont' %>
+		</li>
 		<br>
 		<li>
 			<%= label_tag "option2-q#{n}", "option2-q#{n}", class: 'cont' %>
 			<%= text_field_tag "option2-q#{n}", "", class: 'cont' %>
+		</li>
+		<li>
+			<%= label_tag "option2hin-q#{n}", "option2hin-q#{n}", class: 'cont' %>
+			<%= text_field_tag "option2hin-q#{n}", "", class: 'cont' %>
 		</li>
 		<br>
 		<li>
 			<%= label_tag "option3-q#{n}", "option3-q#{n}", class: 'cont' %>
 			<%= text_field_tag "option3-q#{n}", "", class: 'cont' %>
 		</li>
+		<li>
+			<%= label_tag "option3hin-q#{n}", "option3hin-q#{n}", class: 'cont' %>
+			<%= text_field_tag "option3hin-q#{n}", "", class: 'cont' %>
+		</li>
+
 	</ul>
 
 <p>ANSWER(A,B,C)</p>

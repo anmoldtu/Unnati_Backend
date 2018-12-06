@@ -1,0 +1,38 @@
+<head>
+	<style type="text/css">
+		.butt{
+			font-size: 20px;
+		}
+		.cont{
+			height: 30px;
+			width:300px;
+			background-color: white;
+			font-size: 20px;
+			margin-left: 20px;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+
+	</style>
+</head>
+<h1>ADD MODULE</h1>
+<div class="container">
+	<%= form_tag admins_module_create_path,method: :post do %>
+
+	<h2>MODULE NAME</h2>
+	<%= text_field_tag :mod_name,"",class: 'cont'%>
+	<br>
+	
+	<h2>SELECT COURSE</h2>
+	<%= select_tag 'course',options_from_collection_for_select(@courses, "id", "name"),style: 'text-transform:capitalize;'%>
+
+	<h2>VIDEO</h2>
+	<ul id="que">
+	<%= text_field_tag :vid_name,"",class: 'cont'%>
+
+	</ul>
+	<br>
+	<%= submit_tag "Submit" %>
+
+	<% end %>	
+</div>
